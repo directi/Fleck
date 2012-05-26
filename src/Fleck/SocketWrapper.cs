@@ -5,8 +5,7 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using System.Threading;
+using Tasks;
 
 namespace Fleck
 {
@@ -99,7 +98,7 @@ namespace Fleck
         {
             _tokenSource.Cancel();
             if (_stream != null) _stream.Dispose();
-            if (_socket != null) _socket.Dispose();
+//            if (_socket != null) _socket.Dispose();
         }
 
         public void Close()

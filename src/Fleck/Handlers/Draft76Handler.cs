@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -59,7 +58,7 @@ namespace Fleck.Handlers
         
         public static byte[] Handshake(WebSocketHttpRequest request)
         {
-            FleckLog.Debug("Building Draft76 Response");
+            FleckLog.Debug("Building Draft76 Response", null);
             
             var builder = new StringBuilder();
             builder.Append("HTTP/1.1 101 WebSocket Protocol Handshake\r\n");

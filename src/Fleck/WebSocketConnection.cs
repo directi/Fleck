@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Tasks;
 
 namespace Fleck
 {
@@ -42,12 +42,12 @@ namespace Fleck
 
             if (_closed || !Socket.Connected)
             {
-                FleckLog.Warn("Data sent after close. Ignoring.");
+                FleckLog.Warn("Data sent after close. Ignoring.", null);
                 return;
             }
 
             var bytes = Handler.FrameText(message);
-            SendBytes(bytes);
+            SendBytes(bytes, null);
         }
         
         public void Send(byte[] message)
@@ -57,12 +57,12 @@ namespace Fleck
 
             if (_closed || !Socket.Connected)
             {
-                FleckLog.Warn("Data sent after close. Ignoring.");
+                FleckLog.Warn("Data sent after close. Ignoring.", null);
                 return;
             }
 
             var bytes = Handler.FrameBinary(message);
-            SendBytes(bytes);
+            SendBytes(bytes, null);
         }
 
         public void StartReceiving()
@@ -100,11 +100,11 @@ namespace Fleck
             {
                 if (r <= 0)
                 {
-                    FleckLog.Debug("0 bytes read. Closing.");
+                    FleckLog.Debug("0 bytes read. Closing.", null);
                     CloseSocket();
                     return;
                 }
-                FleckLog.Debug(r + " bytes read");
+                FleckLog.Debug(r + " bytes read", null);
                 var readBytes = buffer.Take(r);
                 if (Handler != null)
                 {
@@ -118,7 +118,7 @@ namespace Fleck
 
                 Read(data, buffer);
             },
-            HandleReadError);
+            HandleReadError, 0);
         }
         
         private void HandleReadError(Exception e)
@@ -153,11 +153,11 @@ namespace Fleck
             }
         }
 
-        private void SendBytes(byte[] bytes, Action callback = null)
+        private void SendBytes(byte[] bytes, Action callback)
         {
             Socket.Send(bytes, () =>
             {
-                FleckLog.Debug("Sent " + bytes.Length + " bytes");
+                FleckLog.Debug("Sent " + bytes.Length + " bytes", null);
                 if (callback != null)
                     callback();
             },

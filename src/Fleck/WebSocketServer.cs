@@ -45,12 +45,12 @@ namespace Fleck
             var ipLocal = new IPEndPoint(IPAddress.Any, Port);
             ListenerSocket.Bind(ipLocal);
             ListenerSocket.Listen(100);
-            FleckLog.Info("Server started at " + Location);
+            FleckLog.Info("Server started at " + Location, null);
             if (_scheme == "wss")
             {
                 if (Certificate == null)
                 {
-                    FleckLog.Error("Scheme cannot be 'wss' without a Certificate");
+                    FleckLog.Error("Scheme cannot be 'wss' without a Certificate", null);
                     return;
                 }
             }
@@ -65,7 +65,7 @@ namespace Fleck
 
         private void OnClientConnect(ISocket clientSocket)
         {
-            FleckLog.Debug("Client Connected");
+            FleckLog.Debug("Client Connected", null);
             ListenForClients();
 
             WebSocketConnection connection = null;
@@ -81,7 +81,7 @@ namespace Fleck
 
             if (IsSecure)
             {
-                FleckLog.Debug("Authenticating Secure Connection");
+                FleckLog.Debug("Authenticating Secure Connection", null);
                 clientSocket
                     .Authenticate(Certificate,
                                   connection.StartReceiving,

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3D7680B4-0224-4F0C-B1F6-74FB7586EBDC}</ProjectGuid>
     <OutputType>Exe</OutputType>
@@ -33,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +46,10 @@
     <ProjectReference Include="..\..\Fleck\Fleck.csproj">
       <Project>{8B12D929-AFA9-4307-BEFF-2ED0F1070FEE}</Project>
       <Name>Fleck</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tasks\Tasks.csproj">
+      <Project>{46CE7801-9D21-4B97-B099-001A08741494}</Project>
+      <Name>Tasks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
