@@ -56,6 +56,8 @@ namespace Fleck
 
         public void Bind(EndPoint endPoint)
         {
+            _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontLinger, true);
+            _socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             _socket.Bind(endPoint);
         }
 
