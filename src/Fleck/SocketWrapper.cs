@@ -25,6 +25,12 @@ namespace Fleck
             }
         }
 
+        public override string ToString() 
+        {
+            var endpoint = _socket.RemoteEndPoint as IPEndPoint;
+            return endpoint != null ? (endpoint.Address.ToString() + ":" + endpoint.Port) : null; 
+        }
+
         public SocketWrapper(Socket socket)
         {
             _tokenSource = new CancellationTokenSource();

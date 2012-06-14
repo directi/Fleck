@@ -65,7 +65,7 @@ namespace Fleck
 
         private void OnClientConnect(ISocket clientSocket)
         {
-            FleckLog.Debug("Client Connected", null);
+            FleckLog.Info("Client Connected: " + clientSocket.ToString(), null);
             ListenForClients();
 
             WebSocketConnection connection = null;

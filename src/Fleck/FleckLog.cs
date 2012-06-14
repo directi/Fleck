@@ -10,16 +10,31 @@ namespace Fleck
         Warn,
         Error
     }
+    public interface LogWriter {
+        void LogToFile(string str);
+    }
 
     public class FleckLog
     {
         public static LogLevel Level = LogLevel.Info;
+        private static LogWriter writer;
 
         public static Action<LogLevel, string, Exception> LogAction = (level, message, ex) =>
         {
             if (level >= Level)
-                Console.WriteLine("{0} [{1}] {2} {3}", DateTime.Now, level, message, ex);
+            {
+                var line = string.Format("{0} [{1}] {2} {3}", DateTime.Now, level, message, ex);
+                if(writer != null){
+                    writer.LogToFile(line);
+                }else{
+                    Console.WriteLine(line);
+                }
+            }
         };
+
+        public static void SetLogWriter(LogWriter writer_){
+            writer = writer_;
+        }
 
         public static void Warn(string message, Exception ex)
         {
